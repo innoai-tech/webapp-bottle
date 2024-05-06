@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - uses: oven-sh/setup-bun@v1
       # Generate a unique tag name based on date and time
       - name: Generate tag name
         id: generate_tag
@@ -27,9 +27,6 @@ jobs:
           tag_name: ${{ steps.generate_tag.outputs.tag_name }}_storage_ubuntu22
           release_name: "storage ubuntu22 ${{ steps.generate_tag.outputs.tag_name }}"
           body: "See the assets to download this version and install."
-      # 安装 Bun
-      - name: Install Bun
-        uses: jarred-sumner/bun-install@v1
 
   build-tauri:
     needs: create-release
